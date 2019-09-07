@@ -1,0 +1,94 @@
+Title: Idaho Indigency Calculator
+Author: Patrick Genovese
+Before:<link rel="stylesheet" type="text/css" href="https://suffolklitlab.org/howto/qna/style/style.css">
+<div id="icon" style="background-size: 110px 99px;background-image: url('https://suffolklitlab.org/howto/qna/images/maxheadroom.gif');"></div>
+<h2 style="text-align:center;">Idaho Indigency Calculator</h2>
+<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to see if someone qualifies for appointment of counsel.</p>
+
+Q(1):Including themselves, how many members are in their household?
+A: 1
+	Q(1.1):GOTO:one
+A:2
+	Q(1.2):GOTO:two
+A:3
+	Q(1.3):GOTO:three
+A:4
+	Q(1.4):GOTO:four
+A:5
+	Q(1.5):GOTO:five
+A:6
+	Q(1.6):GOTO:six
+A:7
+	Q(1.7):GOTO:seven
+A:8
+	Q(1.8):GOTO:eight
+
+Q(one): Is their annual income under $23,356.30?
+A:Yes
+	Q(2.1):GOTO:badguy
+A:No
+	Q(2.2):GOTO:welfare
+Q(two):Is their annual income under $31,621.70?
+A:Yes
+	Q(3.1):GOTO:badguy
+A:No
+	Q(3.2):GOTO:welfare
+Q(three):Is their annual income under $39,887.10?
+A:Yes
+	Q(4.1):GOTO:badguy
+A:No
+	Q(4.2):GOTO:welfare
+Q(four):Is their annual income under $48,152.50?
+A:Yes
+	Q(5.1):GOTO:badguy
+A:No
+	Q(5.2):GOTO:welfare
+Q(five):Is their annual income under $56,417.90?
+A:Yes
+	Q(6.1):GOTO:badguy
+A:No
+	Q(6.2):GOTO:welfare
+Q(six):Is their annual income under $64,683.30?
+A:Yes
+	Q(7.1):GOTO:badguy
+A:No
+	Q(7.2):GOTO:welfare
+Q(seven):Is their annual income under $72,948.70?
+A:Yes
+	Q(8.1):GOTO:badguy
+A:No
+	Q(8.2):GOTO:welfare
+Q(eight):Is their annual income under $81,214.10?
+A:Yes
+	Q(9.1):GOTO:badguy
+A:No
+	Q(9.2):GOTO:welfare
+
+Q(welfare): Does this person or their dependents receive title 56 public welfare food assistance, health coverage, cash assistance or child care assistance?
+A:Yes
+	Q(10.1):GOTO:badguy
+A:No
+	Q(10.2):GOTO:lockup
+
+Q(lockup):Is this person currently serving a sentence in a correctional facility or are being housed in a mental health facility?
+A:Yes
+	Q(11.1):GOTO:badguy
+A:No
+	Q(11.2):GOTO:badguy2
+
+Q(badguy):Would it be against public interest to deem this person Indigent?
+A:Yes
+	Q(12.1):They are not Indigent. They will not qualify
+A:No
+	Q(12.2):They are Indigent. They qualify.
+A:Maybe
+	Q(12.3):They may be indigent. Please fill out a financial statement and present to the court. It will be up to them to decide if they qualify.
+
+Q(badguy2):Would it be against public interest to deem this person Indigent?
+A:Yes
+	Q(13.1):They are not Indigent. They will not qualify.
+A:No
+	Q(13.2):GOTO:12.3
+A:Maybe
+	Q(13.3):GOTO:12.3
