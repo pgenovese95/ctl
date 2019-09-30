@@ -1,0 +1,81 @@
+Title: Idaho Indigency Calculator
+Author: Patrick Genovese
+Before: <input type="hidden" name="name" value="Idigent Docx"/>
+<input type="hidden" name="docx_uri" value="https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx"/>
+
+<script>
+function fedpov(house,income,percentage){
+	// Determines if your income is less than or equal to 
+	// a percentage of the 2018 federal poverty guidelines 
+	// for the contiguous United States. See
+	// https://www.federalregister.gov/documents/2018/01/18/2018-00814/annual-update-of-the-hhs-poverty-guidelines
+	
+		var line = NaN;
+	
+		if (house == 1) {
+			line = 12140;
+		} else if (house == 2) {
+			line = 16460;
+		} else if (house == 3) {
+			line = 20780;
+		} else if (house == 4) {
+			line = 25100;
+		} else if (house == 5) {
+			line = 29420;
+		} else if (house == 6) {
+			line = 33740;
+		} else if (house == 7) {
+			line = 38060;
+		} else if (house == 8) {
+			line = 42380;
+		} else if (house > 8) {
+			line = 42380 + (house-8)*4320;
+		}
+	
+		if (income <= (line*(percentage/100))) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+</script>	
+Q(name): Hi! What's your name?
+X:
+	Q(address): Hi <x>name</x>. What is your address?
+	X:
+		Q(1.1.1):Great! Today we will figure out whether you would be considered indigent and eligible for counsel. Are you ready?
+		A:Yes
+			Q(1.1.1.1):GOTO:welfare
+		A:No
+			Q(1.1.1.2): Okay, Bye!
+
+Q(welfare): Do you or your dependents receive title 56 public welfare food assistance, health coverage, cash assistance or child care assistance?
+A:Yes
+	Q(2.1):GOTO:badguy
+A:No
+	Q(2.2):GOTO:lockup
+
+Q(lockup):Are you currently serving a sentence in a correctional facility or are being housed in a mental health facility?
+A:Yes
+	Q(3.1):GOTO:badguy
+A:No
+	Q(3.2):GOTO:house
+
+Q(house): How many people are in your household?
+X:number
+	Q(income): How much income does your household bring in per year in after tax dollars?
+	X:number
+		Q(4.1.1): Are you ready to see if you qualify?
+		A[javascript:if (fedpov(getvar('house'),getvar('income'),187)){ goto('badguy') } else { goto('5.3') } ]: yes
+		
+			
+Q(badguy):Would it be against public interest to deem you Indigent?
+A:Yes
+	Q(notI):You are not Indigent. You will not qualify. Please type "Not Indigent" below.
+	X[javascript:submit2('https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx','POST','','','','json_doc','_blank')]:
+A:No
+	Q(I):You are Indigent. You qualify. Please type "Indigent" below.
+	X[javascript:submit2('https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx','POST','','','','json_doc','_blank')]:
+A:Maybe
+	Q(Maybe):You may be indigent. Please fill out a financial statement and present to the court. It will be up to them to decide if you qualify. Please type "Maybe Indigent- Ask Court" below.
+	X[javascript:submit2('https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx','POST','','','','json_doc','_blank')]:
