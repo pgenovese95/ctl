@@ -70,12 +70,12 @@ X:number
 		
 			
 Q(badguy):Would it be against public interest to deem you Indigent?
-A:Yes
-	Q(notI):You are not Indigent. You will not qualify. Please type "Not Indigent" below.
-	X[javascript:submit2('https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx','POST','','','','json_doc','_blank')]:
-A:No
-	Q(I):You are Indigent. You qualify. Please type "Indigent" below.
-	X[javascript:submit2('https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx','POST','','','','json_doc','_blank')]:
-A:Maybe
+A(You are not Indigent):Yes
+	Q(notI):You are not Indigent. You will not qualify.
+	A:okay. Please download these findings into a word document.
+A(You are indigent):No
+	Q(I):You are Indigent. You Qualify.
+	A:okay. Please download these findings into a word document.
+A(You may be indigent):Maybe
 	Q(Maybe):You may be indigent. Please fill out a financial statement and present to the court. It will be up to them to decide if you qualify. Please type "Maybe Indigent- Ask Court" below.
-	X[javascript:submit2('https://github.com/pgenovese95/ctl/blob/master/Idaho%20Indigent.docx','POST','','','','json_doc','_blank')]:
+	A:okay. Please download these findings into a word document.
