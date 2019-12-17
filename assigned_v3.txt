@@ -76,5 +76,5 @@ A(You are indigent):No
 	Q(I):You are Indigent. You Qualify.
 	A:[javascript:submit2('http://colarusso.pythonanywhere.com/2docx/','POST','','','','json_doc','_blank')]:okay. Please download these findings into a word document.
 A(You may be indigent):Maybe
-	Q(Maybe):You may be indigent. Please fill out a financial statement and present to the court. It will be up to them to decide if you qualify. Please type "Maybe Indigent- Ask Court" below.
+	Q(Maybe):You may be indigent. Please fill out a financial statement and present to the court. It will be up to them to decide if you qualify. 
 	A:[javascript:submit2('http://colarusso.pythonanywhere.com/2docx/','POST','','','','json_doc','_blank')]:okay. Please download these findings into a word document.
